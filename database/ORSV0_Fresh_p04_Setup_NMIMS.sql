@@ -1,3 +1,6 @@
+-- Campus demo identities are mapped to the official SVKM's NMIMS campus names.
+-- College ID 4 is deliberately NMIMS Hyderabad to preserve Chair scope and its students.
+-- Modified campus/student/faculty records use the seeded Admin login an@gmail.com.
 -- =============================================================================
 -- ORSV0 FRESH DATABASE SETUP: p04
 -- Generated from the project's canonical database/demo_ors.sql schema.
@@ -13,7 +16,7 @@
 -- Demo logins (change passwords after first login):
 --   an@gmail.com     / Admin123   (Admin)
 --   manish@gmail.com / Stud1234   (Student)
---   chair@gmail.com  / Chair123   (Program Chair)
+--   chair@gmail.com  / Chair123   (Program Chair; NMIMS Hyderabad Campus)
 --   ram@gmail.com    / Facu1234   (Faculty)
 --
 -- After this script finishes, configure ORS_DB_USER / ORS_DB_PASSWORD if your
@@ -59,11 +62,14 @@ CREATE TABLE `st_college` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `st_college` VALUES
-(1,'Truba','Indore Bypass Road','MadhyaPradesh','Indore','9826012345','root@sunilos.com','root@sunilos.com','2026-05-15 16:19:14','2026-05-15 16:19:14'),
-(2,'SVIM','Gumasta Nagar','MadhyaPradesh','Indore','9826054321','root@sunilos.com','root@sunilos.com','2026-05-15 16:19:14','2026-05-15 16:19:14'),
-(3,'JIY','Rau Main Road','MadhyaPradesh','Khargone','8871012345','root@sunilos.com','root@sunilos.com','2026-05-15 16:19:14','2026-05-15 16:19:14'),
-(4,'JIU','Indore Road Rau','Gujarat','Bhopal','9165254357','root@sunilos.com','root@sunilos.com','2026-05-15 16:19:14','2026-05-15 16:19:14'),
-(5,'MIT','Ujjain Road','MadhyaPradesh','Indore','7896321450','root@sunilos.com','root@sunilos.com','2026-05-15 16:19:14','2026-05-15 16:19:14');
+(1,'SVKM''s NMIMS Mumbai Campus','V. L. Mehta Road, Vile Parle West, Mumbai - 400056','Maharashtra','Mumbai','02242355555','root@sunilos.com','an@gmail.com','2026-05-15 16:19:14','2026-10-19 10:30:00'),
+(2,'SVKM''s NMIMS Shirpur Campus','Mukesh Patel Technology Park, Babulde, Bank of Tapi River, Dhule','Maharashtra','Shirpur','02563295545','root@sunilos.com','an@gmail.com','2026-05-15 16:19:14','2026-10-19 10:30:00'),
+(3,'SVKM''s NMIMS Bengaluru Campus','Bannerghatta Main Road, Lakshmipura Village, Jigani Hobli, Anekal Taluk, Bengaluru - 560083','Karnataka','Bengaluru','08040855555','root@sunilos.com','an@gmail.com','2026-05-15 16:19:14','2026-10-19 10:30:00'),
+(4,'SVKM''s NMIMS Hyderabad Campus','Plot B4, Green Industrial Park, Polepally SEZ, TSIIC, Jadcherla, Mahbubnagar - 509301','Telangana','Jadcherla','08542350062','root@sunilos.com','an@gmail.com','2026-05-15 16:19:14','2026-10-19 10:30:00'),
+(5,'SVKM''s NMIMS Indore Campus','Off Super Corridor, Village Bada Bangarda, Tehsil Hatod, Indore - 453112','Madhya Pradesh','Indore','07312581505','root@sunilos.com','an@gmail.com','2026-05-15 16:19:14','2026-10-19 10:30:00'),
+(6,'SVKM''s NMIMS Navi Mumbai Campus','Plot No. 2, Sector 33, Kharghar, Navi Mumbai - 410210','Maharashtra','Navi Mumbai','02235476550','root@sunilos.com','an@gmail.com','2026-05-15 16:19:14','2026-10-19 10:30:00'),
+(7,'SVKM''s NMIMS Chandigarh Campus','Plot No. 5, Education City, Sarangpur, Chandigarh - 160014','Chandigarh','Chandigarh','01723501302','root@sunilos.com','an@gmail.com','2026-05-15 16:19:14','2026-10-19 10:30:00'),
+(8,'SVKM''s NMIMS Ahmedabad Campus','GIBPURA, Sanand-Sarkhej Highway, Sanand - 382110','Gujarat','Sanand','8976984738','root@sunilos.com','an@gmail.com','2026-05-15 16:19:14','2026-10-19 10:30:00');
 
 CREATE TABLE `st_course` (
   `ID` bigint NOT NULL,
@@ -133,8 +139,8 @@ CREATE TABLE `st_faculty` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `st_faculty` VALUES
-(1,4,'JIU','Ram','Sharma','ram@gmail.com','9856569858','Ganga Bag Colony','Male','1992-12-12 00:00:00','root@sunilos.com','root@sunilos.com','2026-05-14 12:22:23','2026-05-14 12:22:23',1,'Java',1,'String'),
-(2,4,'JIU','Ojas','Bhayal','chair@gmail.com','9165254357','University Campus','Male','1988-08-15 00:00:00','root@sunilos.com','root@sunilos.com','2026-05-14 12:22:23','2026-05-14 12:22:23',1,'Java',1,'String');
+(1,4,'SVKM''s NMIMS Hyderabad Campus','Ram','Sharma','ram@gmail.com','9856569858','Ganga Bag Colony','Male','1992-12-12 00:00:00','root@sunilos.com','an@gmail.com','2026-05-14 12:22:23','2026-10-19 10:30:00',1,'Java',1,'String'),
+(2,4,'SVKM''s NMIMS Hyderabad Campus','Ojas','Bhayal','chair@gmail.com','9165254357','University Campus','Male','1988-08-15 00:00:00','root@sunilos.com','an@gmail.com','2026-05-14 12:22:23','2026-10-19 10:30:00',1,'Java',1,'String');
 
 CREATE TABLE `st_faculty_allocation` (
   `ID` bigint NOT NULL,
@@ -187,11 +193,11 @@ CREATE TABLE `st_student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `st_student` VALUES
-(1,4,'JIU','Rahul','Sahu','2004-07-17 00:00:00','9826011111','rahul@gmail.com','root@sunilos.com','root@sunilos.com','2026-05-16 16:54:13','2026-05-16 16:54:13',1,'Java'),
-(2,2,'SVIM','Manish','Sharma','2004-07-18 00:00:00','7896321452','manish@gmail.com','root@sunilos.com','root@sunilos.com','2026-05-16 16:54:13','2026-05-16 16:54:13',1,'Java'),
-(3,4,'JIU','Vipin','Chandore','2001-12-05 00:00:00','9165254357','vipin@gmail.com','root@sunilos.com','root@sunilos.com','2026-05-16 16:54:13','2026-05-16 16:54:13',1,'Java'),
-(4,5,'MIT','Deepak','Kumar','2001-10-05 00:00:00','8165254357','deepak@gmail.com','root@sunilos.com','root@sunilos.com','2026-05-16 16:54:13','2026-05-16 16:54:13',1,'Java'),
-(5,5,'MIT','Sivam','Kumar','2005-06-02 00:00:00','7894563210','sivam@gmail.com','root@sunilos.com','root@sunilos.com','2026-06-01 15:52:26','2026-06-01 15:52:26',1,'Java');
+(1,4,'SVKM''s NMIMS Hyderabad Campus','Rahul','Sahu','2004-07-17 00:00:00','9826011111','rahul@gmail.com','root@sunilos.com','an@gmail.com','2026-05-16 16:54:13','2026-10-19 10:30:00',1,'Java'),
+(2,2,'SVKM''s NMIMS Shirpur Campus','Manish','Sharma','2004-07-18 00:00:00','7896321452','manish@gmail.com','root@sunilos.com','an@gmail.com','2026-05-16 16:54:13','2026-10-19 10:30:00',1,'Java'),
+(3,4,'SVKM''s NMIMS Hyderabad Campus','Vipin','Chandore','2001-12-05 00:00:00','9165254357','vipin@gmail.com','root@sunilos.com','an@gmail.com','2026-05-16 16:54:13','2026-10-19 10:30:00',1,'Java'),
+(4,5,'SVKM''s NMIMS Indore Campus','Deepak','Kumar','2001-10-05 00:00:00','8165254357','deepak@gmail.com','root@sunilos.com','an@gmail.com','2026-05-16 16:54:13','2026-10-19 10:30:00',1,'Java'),
+(5,5,'SVKM''s NMIMS Indore Campus','Sivam','Kumar','2005-06-02 00:00:00','7894563210','sivam@gmail.com','root@sunilos.com','an@gmail.com','2026-06-01 15:52:26','2026-10-19 10:30:00',1,'Java');
 
 CREATE TABLE `st_enrollment` (
   `ID` bigint NOT NULL,
@@ -305,7 +311,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 -- =============================================================================
 -- POST-SETUP VALIDATION
--- Expected tables: 11. Demo seed includes 5 colleges, 2 courses, 3 subjects,
+-- Expected tables: 11. Demo seed includes 8 colleges, 2 courses, 3 subjects,
 -- 2 faculty, 4 allocations, 5 students, 6 enrollments, 5 normalized marks,
 -- 4 users, 4 roles, and 0 password-reset tokens.
 -- =============================================================================
