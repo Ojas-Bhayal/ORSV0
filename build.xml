@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ORSV0" default="build" basedir=".">
+
+	<description>Reproducible Build and Controlled Tomcat Deployment for ORSV0 (Phase 1)</description>
+
+	<property environment="env" />
+	<property name="project.name" value="ORSV0" />
+	<property name="project.location" location="${basedir}" />
+	<property name="mvn.executable" value="mvn" />
+	<property name="war.file" location="${project.location}/target/${project.name}.war" />
+
+	<condition property="tomcat.home" value="${env.TOMCAT_HOME}">
+		<isset property="env.TOMCAT_HOME" />
+	</condition>
+
+	<target name="info">
+		<echo message="Project directory: ${project.location}" />
+		<echo message="Target WAR artifact: ${war.file}" />
+	</target>
+
+	<target name="maven-build" depends="info" description="Compile current source, run tests, and package target/ORSV0.war">
+		<echo message="Building ${project.name} from current source via Maven..." />
+		<exec executable="${mvn.executable}" dir="${project.location}" failonerror="true">
+			<arg value="clean" />
+			<arg value="test" />
+			<arg value="package" />
+		</exec>
+	</target>
+
+	<target name="build" depends="maven-build" description="Default target: compile and package current source into target/ORSV0.war">
+		<available file="${war.file}" property="war.built" />
+		<fail unless="war.built" message="Build failed: ${war.file} was not produced." />
+		<echo message="Build completed reproducibly: ${war.file}" />
+	</target>
+
+	<target name="verify-tomcat">
+		<fail unless="tomcat.home" message="Deployment aborted: TOMCAT_HOME is not configured. Set TOMCAT_HOME or pass -Dtomcat.home=/path/to/tomcat." />
+		<available file="${tomcat.home}/webapps" type="dir" property="tomcat.webapps.exists" />
+		<fail unless="tomcat.webapps.exists" message="Deployment aborted: ${tomcat.home}/webapps directory does not exist." />
+	</target>
+
+	<target name="clean-app-only" depends="verify-tomcat" description="Remove only previous ORSV0 deployment without touching other webapps">
+		<delete file="${tomcat.home}/webapps/${project.name}.war" quiet="true" />
+		<delete dir="${tomcat.home}/webapps/${project.name}" quiet="true" />
+	</target>
+
+	<target name="deploy" depends="build,clean-app-only" description="Build current source and deploy ORSV0.war to configured Tomcat">
+		<echo message="Deploying ${war.file} to ${tomcat.home}/webapps/${project.name}.war ..." />
+		<copy file="${war.file}" todir="${tomcat.home}/webapps" overwrite="true" />
+		<echo message="Deployed ${project.name}.war to ${tomcat.home}/webapps." />
+	</target>
+
+</project>

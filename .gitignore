@@ -1,0 +1,66 @@
+# ORSV0 - Java / Maven / JSP / Tomcat project
+
+# Maven and generated build output
+/target/
+/dist/
+/build/
+/bin/
+*.class
+*.war
+*.ear
+*.jar
+
+# Local Maven and Tomcat installations (do not publish installed tools/servers)
+/apache-maven*/
+/maven*/
+/apache-tomcat*/
+/tomcat*/
+
+# Runtime logs, caches and temporary output
+/logs/
+*.log
+*.tmp
+*.temp
+/temp/
+/work/
+
+# Release archives and local bundles (publish source, not ZIP/WAR artifacts)
+/release/
+*.zip
+
+# Credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+*.local.properties
+application-local.properties
+system.local.properties
+secrets/
+credentials.*
+*_credentials.*
+*.pem
+*.key
+*.jks
+*.p12
+
+# Local database exports/backups (keep reviewed schema/setup/migration .sql files)
+/database/backups/
+/database/exports/
+*.sql.gz
+*.dump
+*.bak
+
+# IDE and OS files
+.idea/
+.vscode/
+.settings/
+.classpath
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor swap/backup files
+*~
+*.swp
+*.swo
